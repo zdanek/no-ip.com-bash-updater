@@ -16,7 +16,7 @@ NEWIP=$(wget -O - http://icanhazip.com/ -o /dev/null)
 STOREDIP=$(cat $STOREDIPFILE)
 
 if [ "$NEWIP" != "$STOREDIP" ]; then
-	RESULT=$(wget -O "$LOGFILE" -q --user-agent="$USERAGENT" --no-check-certificate "https://$USERNAME:$PASSWORD@dynupdate.no-ip.com/nic/update?hostname=$HOST&myip=$NEWIP")
+	RESULT=$(wget -O "$LOGFILE" -q --user-agent="$USERAGENT" --no-check-certificate "http://$USERNAME:$PASSWORD@dynupdate.no-ip.com/nic/update?hostname=$HOST&myip=$NEWIP")
 
 	LOGLINE="[$(date +"%Y-%m-%d %H:%M:%S")] $RESULT"
 	echo $NEWIP > $STOREDIPFILE
